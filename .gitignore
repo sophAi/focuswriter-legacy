@@ -1,5 +1,13 @@
 Makefile
 build
+build_deb_workspace
+.build_deps
 focuswriter
+focuswriter-legacy
 *.qm
+*.deb
+*.buildinfo
+*.changes
+.qmake.stash
 *~
+
