@@ -36,16 +36,16 @@
 //-----------------------------------------------------------------------------
 
 Application::Application(int& argc, char** argv) :
-	QtSingleApplication("org.gottcode.FocusWriter", argc, argv),
+	QtSingleApplication("org.gottcode.FocusWriterLegacy", argc, argv),
 	m_window(0)
 {
-	setApplicationName("FocusWriter");
+	setApplicationName("FocusWriterLegacy");
 	setApplicationVersion(VERSIONSTR);
-	setApplicationDisplayName(Window::tr("FocusWriter"));
+	setApplicationDisplayName(Window::tr("FocusWriter Legacy"));
 	setOrganizationDomain("gottcode.org");
 	setOrganizationName("GottCode");
 #if !defined(Q_OS_WIN) && !defined(Q_OS_MAC)
-	setWindowIcon(QIcon::fromTheme("focuswriter", QIcon(":/focuswriter.png")));
+	setWindowIcon(QIcon::fromTheme("focuswriter-legacy", QIcon(":/focuswriter.png")));
 #endif
 
 	setAttribute(Qt::AA_UseHighDpiPixmaps, true);

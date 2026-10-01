@@ -63,6 +63,7 @@ int main(int argc, char** argv)
 #elif defined(Q_OS_UNIX)
 	QFileInfo portable(appdir + "/Data");
 	datadirs.append(DATADIR);
+	datadirs.append(appdir + "/../share/focuswriter-legacy");
 	datadirs.append(appdir + "/../share/focuswriter");
 #else
 	QFileInfo portable(appdir + "/Data");

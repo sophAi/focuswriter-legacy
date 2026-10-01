@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
-  <id>focuswriter.desktop</id>
+  <id>focuswriter-legacy.desktop</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0+</project_license>
-  <name>FocusWriter</name>
+  <name>FocusWriter Legacy</name>
   <name xml:lang="af_ZA">FocusWriter</name>
   <name xml:lang="bs">FocusWriter</name>
   <name xml:lang="cs">FocusWriter</name>

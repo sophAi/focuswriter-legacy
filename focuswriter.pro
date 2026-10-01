@@ -43,7 +43,7 @@ DEFINES += VERSIONSTR=\\\"$${VERSIONSTR}\\\"
 
 # Set program name
 unix: !macx: !haiku {
-	TARGET = focuswriter
+	TARGET = focuswriter-legacy
 } else {
 	TARGET = FocusWriter
 }
@@ -230,6 +230,9 @@ SOURCES += src/action_manager.cpp \
 # Generate translations
 TRANSLATIONS = $$files(translations/focuswriter_*.ts)
 qtPrepareTool(LRELEASE, lrelease)
+!exists($$LRELEASE) {
+	LRELEASE = lrelease
+}
 updateqm.input = TRANSLATIONS
 updateqm.output = ${QMAKE_FILE_PATH}/${QMAKE_FILE_BASE}.qm
 updateqm.commands = $$LRELEASE -silent ${QMAKE_FILE_IN} -qm ${QMAKE_FILE_OUT}
@@ -306,40 +309,40 @@ macx {
 	isEmpty(DATADIR) {
 		DATADIR = $$PREFIX/share
 	}
-	DEFINES += DATADIR=\\\"$${DATADIR}/focuswriter\\\"
+	DEFINES += DATADIR=\\\"$${DATADIR}/focuswriter-legacy\\\"
 
 	target.path = $$BINDIR
 
 	icon.files = resources/images/icons/hicolor/*
 	icon.path = $$DATADIR/icons/hicolor
 
-	pixmap.files = resources/unix/focuswriter.xpm
+	pixmap.files = resources/unix/focuswriter-legacy.xpm
 	pixmap.path = $$DATADIR/pixmaps
 
 	icons.files = resources/images/icons/oxygen/hicolor/*
-	icons.path = $$DATADIR/focuswriter/icons/hicolor
+	icons.path = $$DATADIR/focuswriter-legacy/icons/hicolor
 
-	desktop.files = resources/unix/focuswriter.desktop
+	desktop.files = resources/unix/focuswriter-legacy.desktop
 	desktop.path = $$DATADIR/applications/
 
-	appdata.files = resources/unix/focuswriter.appdata.xml
+	appdata.files = resources/unix/focuswriter-legacy.appdata.xml
 	appdata.path = $$DATADIR/metainfo/
 
-	man.files = resources/unix/focuswriter.1
+	man.files = resources/unix/focuswriter-legacy.1
 	man.path = $$PREFIX/share/man/man1
 
 	qm.files = $$replace(TRANSLATIONS, .ts, .qm)
-	qm.path = $$DATADIR/focuswriter/translations
+	qm.path = $$DATADIR/focuswriter-legacy/translations
 	qm.CONFIG += no_check_exist
 
 	sounds.files = resources/sounds/*
-	sounds.path = $$DATADIR/focuswriter/sounds
+	sounds.path = $$DATADIR/focuswriter-legacy/sounds
 
 	themes.files = resources/themes/*
-	themes.path = $$DATADIR/focuswriter/themes
+	themes.path = $$DATADIR/focuswriter-legacy/themes
 
 	symbols.files = resources/symbols/symbols1000.dat
-	symbols.path = $$DATADIR/focuswriter
+	symbols.path = $$DATADIR/focuswriter-legacy
 
 	INSTALLS += target icon pixmap desktop appdata man icons qm sounds symbols themes
 }
