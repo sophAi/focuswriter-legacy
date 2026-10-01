@@ -34,9 +34,25 @@
 #include <QIcon>
 #include <QSettings>
 #include <QStringList>
+#include <cstdio>
+
+static QtMessageHandler s_previous_handler = nullptr;
+
+static void messageFilter(QtMsgType type, const QMessageLogContext &context, const QString &msg)
+{
+	if (msg.contains(QLatin1String("libpng warning: iCCP"))) {
+		return;
+	}
+	if (s_previous_handler) {
+		s_previous_handler(type, context, msg);
+	} else {
+		fprintf(stderr, "%s\n", msg.toLocal8Bit().constData());
+	}
+}
 
 int main(int argc, char** argv)
 {
+	s_previous_handler = qInstallMessageHandler(messageFilter);
 #if !defined(Q_OS_MAC) && (QT_VERSION >= QT_VERSION_CHECK(5,6,0))
 	if (!qEnvironmentVariableIsSet("QT_DEVICE_PIXEL_RATIO")
 			&& !qEnvironmentVariableIsSet("QT_AUTO_SCREEN_SCALE_FACTOR")
